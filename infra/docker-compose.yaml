@@ -1,5 +1,10 @@
 
-version: '3'
+version: '3.8'
+
+volumes:
+  static_value:
+  media_value:
+  database:
 
 services:
   db:
@@ -34,7 +39,3 @@ services:
 
     depends_on:
       - web
-
-volumes:
-  static_value:
-  media_value:
