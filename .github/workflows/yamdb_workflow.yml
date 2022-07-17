@@ -69,6 +69,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
           script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/123:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env
