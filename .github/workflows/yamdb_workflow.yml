@@ -55,7 +55,7 @@ jobs:
           with:
             context: api_yamdb
             push: true
-            tags: absolut83/123:latest 
+            tags: absolut83/api_yamdb:latest 
 
   deploy:
       runs-on: ubuntu-latest
@@ -69,7 +69,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
           script: |
-            sudo docker pull absolut83/123
+            sudo docker pull absolut83/api_yamdb
             #sudo docker pull ${{ secrets.DOCKER_USERNAME }}/absolut83:latest
             sudo docker-compose stop
             sudo docker-compose rm web
@@ -82,10 +82,10 @@ jobs:
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
             sudo docker-compose up -d 
             # Выполняет pull образа с DockerHub
-            #sudo docker pull absolut83/123
+            #sudo docker pull absolut83/api_yamdb
             #остановка всех контейнеров
             #sudo docker stop $(sudo docker ps -a -q)
-            #sudo docker run --rm -d -p 5000:5000 absolut83/123
+            #sudo docker run --rm -d -p 5000:5000 absolut83/api_yamdb
 
   send_message:
       runs-on: ubuntu-latest
