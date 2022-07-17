@@ -14,15 +14,22 @@ jobs:
         python-version: 3.7
 
     - name: Install dependencies
-      run:
+      run: | 
+        # обновление pip
         python -m pip install --upgrade pip 
+        # установка flake8 и его плагинов
         pip install flake8 pep8-naming flake8-broken-line flake8-return flake8-isort
+        # установка зависимостей
         pip install -r api_yamdb/requirements.txt 
 
     - name: Test with flake8 and django tests
-      run:
+      run: |
+        # запуск проверки проекта по flake8
         python -m flake8
+        # перейти в папку, содержащую manage.py — 
+        #<корневая_папка_infra_actions>/<папка_проекта>/manage.py
         cd api_yamdb/
+        # запустить написанные разработчиком тесты
         python manage.py test
 
   build_and_push_to_docker_hub:
@@ -60,8 +67,10 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
-          script: |
+          passphrase: ${{ secrets.PASSPHRASE }} # Если ваш ssh-ключ защищён фразой-паролем
+          script:
+            sudo docker pull absolut83/api_yamdb
+            #sudo docker pull ${{ secrets.DOCKER_USERNAME }}/absolut83:latest
             sudo docker-compose stop
             sudo docker-compose rm web
             touch .env
@@ -71,7 +80,12 @@ jobs:
             echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
             echo DB_HOST=${{ secrets.DB_HOST }} >> .env
             echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-            sudo docker-compose up -d
+            sudo docker-compose up -d 
+            # Выполняет pull образа с DockerHub
+            #sudo docker pull absolut83/api_yamdb
+            #остановка всех контейнеров
+            #sudo docker stop $(sudo docker ps -a -q)
+            #sudo docker run --rm -d -p 5000:5000 absolut83/api_yamdb
 
   send_message:
       runs-on: ubuntu-latest
