@@ -9,7 +9,7 @@ services:
       - ./.env
 
   web:
-    build: absolut83/api_yamdb:latest
+    image: absolut83/api_yamdb:latest
     restart: always
     volumes:
       - static_value:/app/static/
