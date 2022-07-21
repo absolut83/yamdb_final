@@ -78,4 +78,20 @@ DB_HOST=db
 DB_PORT=5432 
 ``` 
 ### Документация API YaMDb 
-Документация доступна по эндпойнту: http://absolut83.sytes.net/redoc/ 
+Документация доступна по эндпойнту: http://absolut83.ddns.net/redoc/ 
+
+## Об авторе
+### Виталий Яремчук
+
+absolut83@mail.ru
+
+Telegram - @kuvalda684
+
+#### Используемые технологии
+- python 3.8.7
+- django 3.0.5
+- django rest framework 3.11.0
+- simplejwt 4.6.0
+- PostgreSQL 12.4
+- nginx 1.19.3
+- docker
