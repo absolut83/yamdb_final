@@ -17,9 +17,7 @@ ALLOWED_HOSTS = [
     '158.160.2.193',
     'localhost',
     'absolut83.ddns.net',
-    '127.0.0.1',
-    '[::1]',
-    'testserver',
+    '*',
 ]
 
 
