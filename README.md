@@ -53,7 +53,7 @@ docker-compose exec web python manage.py migrate --run-syncdb
 docker-compose exec web python manage.py createsuperuser 
 ``` 
 
-Србираем статику: 
+Собираем статику: 
 ```bash 
 docker-compose exec web python manage.py collectstatic --no-input 
 ``` 
